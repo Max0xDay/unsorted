@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array & Data Structure Visualizer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%23ff6b35'/><rect x='4' y='8' width='6' height='6' fill='%23fff'/><rect x='13' y='8' width='6' height='6' fill='%23fff'/><rect x='22' y='8' width='6' height='6' fill='%23fff'/><rect x='4' y='18' width='6' height='6' fill='%23fff'/><rect x='13' y='18' width='6' height='6' fill='%23fff'/><rect x='22' y='18' width='6' height='6' fill='%23fff'/></svg>">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <aside class="sidebar">
+            <h2>Unsorted</h2>
+            <div class="structure-buttons">
+                <button class="structure-button active" data-structure="static-array">Static Array</button>
+                <button class="structure-button" data-structure="dynamic-array">Dynamic Array</button>
+                <button class="structure-button" data-structure="linked-list">Linked List</button>
+                <button class="structure-button" data-structure="doubly-linked">Doubly Linked List</button>
+                <button class="structure-button" data-structure="stack">Stack</button>
+                <button class="structure-button" data-structure="queue">Queue</button>
+                <button class="structure-button" data-structure="circular-buffer">Circular Buffer</button>
+                <button class="structure-button" data-structure="binary-tree">Binary Tree</button>
+                <button class="structure-button" data-structure="hash-table">Hash Table</button>
+            </div>
+            
+            <div class="info-panel">
+                <h3>Structure Info</h3>
+                <div id="structure-info">
+                    <p class="structure-title">Static Array</p>
+                    <p class="structure-desc">Fixed-size contiguous memory block</p>
+                    <div class="complexity-info">
+                        <div class="complexity-item">
+                            <span class="op">Access:</span>
+                            <span class="complexity">O(1)</span>
+                        </div>
+                        <div class="complexity-item">
+                            <span class="op">Insert:</span>
+                            <span class="complexity">O(n)</span>
+                        </div>
+                        <div class="complexity-item">
+                            <span class="op">Delete:</span>
+                            <span class="complexity">O(n)</span>
+                        </div>
+                        <div class="complexity-item">
+                            <span class="op">Search:</span>
+                            <span class="complexity">O(n)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stats-panel">
+                <h3>Sort Statistics</h3>
+                <div class="stat-item">
+                    <span>Comparisons:</span>
+                    <span id="comparisons">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Swaps:</span>
+                    <span id="swaps">0</span>
+                </div>
+                <div class="stat-item">
+                    <span>Memory Accesses:</span>
+                    <span id="memoryAccesses">0</span>
+                </div>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div class="control-panel">
+                <div class="control-groups">
+                    <div class="control-group">
+                        <button id="generateBtn" class="control-btn primary">Generate Random Data</button>
+                        <input type="number" id="sizeInput" min="5" max="50" value="15" placeholder="Size">
+                        <input type="number" id="minValue" min="1" max="99" value="1" placeholder="Min">
+                        <input type="number" id="maxValue" min="1" max="999" value="99" placeholder="Max">
+                    </div>
+                    
+                    <div class="control-group">
+                        <select id="sortAlgorithm">
+                            <option value="bubble">Bubble Sort</option>
+                            <option value="selection">Selection Sort</option>
+                            <option value="insertion">Insertion Sort</option>
+                            <option value="quick">Quick Sort</option>
+                            <option value="merge">Merge Sort</option>
+                            <option value="heap">Heap Sort</option>
+                            <option value="radix">Radix Sort</option>
+                            <option value="counting">Counting Sort</option>
+                        </select>
+                        <button id="sortBtn" class="control-btn">Start Sort</button>
+                        <button id="pauseBtn" class="control-btn" disabled>Pause</button>
+                        <button id="stopBtn" class="control-btn" disabled>Stop</button>
+                        <button id="stepBtn" class="control-btn">Step Mode</button>
+                    </div>
+                    
+                    <div class="speed-control">
+                        <label>Animation Speed:</label>
+                        <input type="range" id="speedSlider" min="50" max="2000" value="500">
+                        <span id="speedValue">500ms</span>
+                    </div>
+                </div>
+                
+                <div class="credit-link">
+                    <a href="https://github.com/Max0xDay" target="_blank">Created by Max Day</a>
+                </div>
+            </div>
+            
+            <div class="status-bar">
+                <div class="status-item">
+                    <span class="label">Memory Base:</span>
+                    <span id="memoryBase">0x1000</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">Operation:</span>
+                    <span id="currentOperation">Ready</span>
+                </div>
+                <div class="status-item">
+                    <span class="label">Phase:</span>
+                    <span id="currentPhase">Idle</span>
+                </div>
+            </div>
+            
+            <div class="visualization-area" id="vizArea">
+                <div class="memory-view" id="memoryView">
+                    <div class="memory-container" id="memoryContainer"></div>
+                </div>
+                <div class="pointer-layer" id="pointerLayer"></div>
+            </div>
+            
+            <div class="code-panel" id="codePanel">
+                <div class="code-header">
+                    <h3>Algorithm Implementation</h3>
+                    <button id="toggleCode" class="toggle-btn">Hide</button>
+                </div>
+                <pre id="codeDisplay"></pre>
+            </div>
+        </main>
+    </div>
+    
+    <script type="module" src="app.js"></script>
+</body>
+</html>
